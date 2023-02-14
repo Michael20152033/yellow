@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/highcharts.min.js"></script>
+    <!-- <script src="js/variable-pie.js"></script> -->
+    <!-- <script src="http://code.highcharts.com/modules/exporting.js"></script> -->
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+<body class="body">
+    <div class="wrapper">
+        <header class="header-authorized header">
+
+    <div class="header__overlay"></div>
+
+
+    <div id="popupDeposit" class="popup popup-deposit">
+        <div class="popup-auth__wrap">
+
+            <i id="closePopup" class="popup__close">
+                <i class="icon icon--close"></i>
+            </i>
+            <div class="popup-deposit__title popup-title">Пополнения</div>
+            <form action="#" class="popup-deposit__form ">
+
+                <div class="popup-deposit__block ">
+                    <input class="popup-deposit__input popup__input" placeholder="Сумма" type="text" onkeypress="return isNumberKey(event)" name="" id="depositSumm">
+                    <div class="popup__value">
+                        <span>rub</span>
+                    </div>
+                </div>
+                <div class="popup__currencies">
+                    <input type="radio" name="currency" value="RUB" id="currencyRub" class="popup__currency">
+                    <label class="popup__label" for="currencyRub">rub</label>
+                    <input type="radio" name="currency" value="USD" id="currencyUsd" class="popup__currency">
+                    <label class="popup__label" for="currencyUsd">usd</label>
+                </div>
+
+
+
+                <div class="popup__error">
+                    Неверный логин
+                </div>
+                <div class="popup-circle">
+                    <div class="popup-wait">
+                        <div class="popup-loading"></div>
+                    </div>
+                </div>
+
+
+
+
+
+                <button class="popup__submit btn btn-before" type="submit ">
+
+                    <span class="btn__inn">
+                        <span class="btn__text">Подтвердить</span>
+                    </span>
+                 
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+
+
+    <div id="popupBuy" class="popup popup-buy">
+        <div class="popup-auth__wrap">
+
+            <i id="closePopup" class="popup__close">
+                <i class="icon icon--close"></i>
+            </i>
+            <div class="popup-buy__title popup-title">Оплата</div>
+            <form action="#" class="popup-buy__form ">
+                <div class="popup-buy__promo">
+                    <div class="popup-buy__counter popup-counter">
+
+                        <button class="popup-counter__minus popup-counter__btn" type="button">
+                            <i class="popup-counter__icon">
+                                <i class="icon icon--minus"></i>
+                            </i>
+                        </button>
+
+                        <input id="number-diet" class="popup-counter__number" onkeypress="return isNumberKey(event)" type="text" name="number" value="1">
+
+
+
+
+                        <button class="popup-counter__plus popup-counter__btn" type="button">
+                            <i class="popup-counter__icon">
+                                <i class="icon icon--plus"></i>
+                            </i>
+                        </button>
+
+                    </div>
+                    <input class="popup__input popup-buy__input" placeholder="Промокод" type="text " name=" " id=" ">
+
+                </div>
+                <div class="popup__currencies">
+                    <input type="radio" name="currencyBuy" value="RUB" id="Rubcurrency" class="popup__currency">
+                    <label class="popup__label" for="Rubcurrency">rub</label>
+                    <input type="radio" name="currencyBuy" value="USD" id="UsdcurrencyUsd" class="popup__currency">
+                    <label class="popup__label" for="UsdcurrencyUsd">usd</label>
+                    <input type="radio" name="currencyBuy" value="USD" id="Balancecurrency" class="popup__currency">
+                    <label class="popup__label" for="Balancecurrency">Оплатить с баланса</label>
+                </div>
+
+                <div class="popup-buy__captcha popup-captcha">
+                    <img src="img/captcha.jpg" alt="" class="popup-captcha__img">
+                    <input class="popup__input popup-buy__input popup-captcha__input" placeholder="Код с картинки" type="text" name="captcha" id="">
+                </div>
+
+
+                <div class="popup__error ">
+                    Неверный логин
+                </div>
+                <div class="popup-circle">
+                    <div class="popup-wait">
+                        <div class="popup-loading"></div>
+                    </div>
+                </div>
+
+                <button class="popup__submit btn btn-before" type="submit ">
+
+                    <span class="btn__inn">
+                        <span class="btn__text">Подтвердить</span>
+                    </span>
+                 
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="header__menu header-menu ">
+        <div class="header-menu__top ">
+            <a href="index.html" class="header__logo logo ">
+                <img src="img/logo.png" alt=" " class="logo__image ">
+            </a>
+        </div>
+
+        <div class="header-menu__line">
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="header__container container ">
+
+
+        <div class="header__wrap ">
+
+            <div class="header__left ">
+                <a href="index.html" class="header__logo logo ">
+                    <img src="img/logo.png" alt=" " class="logo__image ">
+                </a>
+                <nav data-da="header__menu,2,991 " class="header__nav nav ">
+                    <ul class="nav__list ">
+                        <li class="nav__item ">
+                            <a href=" " class="nav__link ">Каталог</a>
+                        </li>
+                        <li class="nav__item ">
+                            <a href="feedbacks.html" class="nav__link ">Отзывы</a>
+                        </li>
+                        <li class="nav__item ">
+                            <a href=" " class="nav__link ">Поддержка</a>
+                        </li>
+                        <li class="nav__item ">
+                            <a href="guarantees.html" class="nav__link ">Гарантии</a>
+                        </li>
+                        <li class="nav__item ">
+                            <a href=" " class="nav__link ">Политика</a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <a href="#" class="header__burger burger ">
+                    <div class="burger__bar burger__bar_one "></div>
+                    <div class="burger__bar burger__bar_two "></div>
+                    <div class="burger__bar burger__bar_three "></div>
+                </a>
+            </div>
+
+            <div class="header__right ">
+                <div data-da="header-menu__line,0, 991 " class="header__profile profile ">
+                    <div class="profile__left ">
+
+                        <div class="profile__nick ">Michael</div>
+                        <div class="profile__money ">1200 RUB</div>
+                    </div>
+                    <div class="profile__right ">
+                        <button type="button" class="profile__button btn ">
+                            <i class="profile__icon ">
+                                <i class="icon icon--bottom"></i>
+                            </i>
+                        </button>
+
+
+                    </div>
+
+
+
+
+                    <a href="" class="profile-menu__out btn-before btn">
+                        <span class="btn__inn">
+                            <i class="btn__icon">
+                                <li class="icon btn-before__icon icon--out"></li>
+                            </i>
+                        </span>
+                    </a>
+                    <i class="profile__arr">
+                        <i class="icon icon--bottom icon--bottom_white"></i>
+                    </i>
+
+                    <div data-da="header-menu__line, 1, 991" class="profile-menu">
+                        <div class="profile-menu__inn">
+                            <ul class="profile-menu__list ">
+
+                                <li id="deposit" class="profile-menu__item ">
+                                    <a class="profile-menu__link ">Пополнить</a>
+                                </li>
+                                <li class="profile-menu__item ">
+                                    <a href="deposits.html" class="profile-menu__link ">Мои пополнения</a>
+                                </li>
+                                <li class="profile-menu__item profile-menu__item_marg">
+                                    <a href="purchases.html" class="profile-menu__link ">Мои покупки</a>
+                                </li>
+                                <li class="profile-menu__item profile-menu__item_none ">
+                                    <a href="" class="profile-menu__link ">Выйти</a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</header>
+        <main class="main">
+
+
+            <div class="intro">
+    <div class="intro__wrap">
+        <div class="intro__transition"></div>
+        <div class="intro__container container">
+
+            <div class="intro__inner">
+                <div class="intro__content">
+                    <div class="intro__title">
+                        fiasko-shop - лучший выбор для покупок
+                    </div>
+
+                    <div class="intro__description">
+                        Только у нас самые низкие цены
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+            <div class="content">
+                <div class="content__inn">
+
+                    <div class="content__content">
+                        <div class="products">
+    <div class="products__container container">
+
+        <div class="products__wrap">
+            <div class="products__content products-content">
+                <div class="products-content__title products-category">
+                    <h2 class="products-category__name">
+                        Instagram:
+                    </h2>
+                    <h2 class="products-category__category">
+                        авторег
+                    </h2>
+
+
+                </div>
+
+                <div class="products-content__inner">
+
+
+                    <div class="products-content__item products-item">
+                        <div class="products-item__inner">
+
+                            <div class="products-item__left">
+                                <div class="products-item__name">
+                                    Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty Call of duty
+                                </div>
+
+
+                                <div class="products-item__count">
+
+                                    <div class="products-item__how">
+                                        на складе:
+                                    </div>
+                                    <div class="products-item__value">
+                                        12
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="products-item__right">
+
+
+
+                            <div class="products-item__price">
+
+                                <div class="products-item__nubmer">
+                                    1024
+                                </div>
+
+                                <div class="products-item__currency">
+                                    rub
+                                </div>
+
+                            </div>
+
+                            <div class="products-item__buy">
+                                <a id="authIn" class="btn btn-before products-item-btn">
+
+
+                                    <span class="btn__inn">
+                                        <i class="btn__icon">
+                                            <i class="icon btn-before__icon icon--buy"></i>
+                                        </i>
+                                        <span class="btn__text products-item-btn__text">купить</span>
+                                    </span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="products-content__item products-item">
+                        <div class="products-item__inner">
+
+                            <div class="products-item__left">
+                                <div class="products-item__name">
+                                    Call of duty
+                                </div>
+
+
+                                <div class="products-item__count">
+
+                                    <div class="products-item__how">
+                                        на складе:
+                                    </div>
+                                    <div class="products-item__value">
+                                        12
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="products-item__right">
+
+
+
+                            <div class="products-item__price">
+
+                                <div class="products-item__nubmer">
+                                    1024
+                                </div>
+
+                                <div class="products-item__currency">
+                                    rub
+                                </div>
+
+                            </div>
+
+                            <div class="products-item__buy">
+                                <a id="authIn" class="btn btn-before products-item-btn">
+
+
+                                    <span class="btn__inn">
+                                        <i class="btn__icon">
+                                            <i class="icon btn-before__icon icon--buy"></i>
+                                        </i>
+                                        <span class="btn__text products-item-btn__text">купить</span>
+                                    </span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="products-content__item products-item">
+                        <div class="products-item__inner">
+
+                            <div class="products-item__left">
+                                <div class="products-item__name">
+                                    Call of duty
+                                </div>
+
+
+                                <div class="products-item__count">
+
+                                    <div class="products-item__how">
+                                        на складе:
+                                    </div>
+                                    <div class="products-item__value">
+                                        12
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="products-item__right">
+
+
+
+                            <div class="products-item__price">
+
+                                <div class="products-item__nubmer">
+                                    1024
+                                </div>
+
+                                <div class="products-item__currency">
+                                    rub
+                                </div>
+
+                            </div>
+
+                            <div class="products-item__buy">
+                                <a id="authIn" class="btn btn-before products-item-btn">
+
+
+                                    <span class="btn__inn">
+                                        <i class="btn__icon">
+                                            <i class="icon btn-before__icon icon--buy"></i>
+                                        </i>
+                                        <span class="btn__text products-item-btn__text">купить</span>
+                                    </span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="products-content__item products-item">
+                        <div class="products-item__inner">
+
+                            <div class="products-item__left">
+                                <div class="products-item__name">
+                                    Call of duty
+                                </div>
+
+
+                                <div class="products-item__count">
+
+                                    <div class="products-item__how">
+                                        на складе:
+                                    </div>
+                                    <div class="products-item__value">
+                                        12
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="products-item__right">
+
+
+
+                            <div class="products-item__price">
+
+                                <div class="products-item__nubmer">
+                                    1024
+                                </div>
+
+                                <div class="products-item__currency">
+                                    rub
+                                </div>
+
+                            </div>
+
+                            <div class="products-item__buy">
+                                <a id="authIn" class="btn btn-before products-item-btn">
+
+
+                                    <span class="btn__inn">
+                                        <i class="btn__icon">
+                                            <i class="icon btn-before__icon icon--buy"></i>
+                                        </i>
+                                        <span class="btn__text products-item-btn__text">купить</span>
+                                    </span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="products-content__item products-item">
+                        <div class="products-item__inner">
+
+                            <div class="products-item__left">
+                                <div class="products-item__name">
+                                    Call of duty
+                                </div>
+
+
+                                <div class="products-item__count">
+
+                                    <div class="products-item__how">
+                                        на складе:
+                                    </div>
+                                    <div class="products-item__value">
+                                        12
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="products-item__right">
+
+
+
+                            <div class="products-item__price">
+
+                                <div class="products-item__nubmer">
+                                    1024
+                                </div>
+
+                                <div class="products-item__currency">
+                                    rub
+                                </div>
+
+                            </div>
+
+                            <div class="products-item__buy">
+                                <a id="authIn" class="btn btn-before products-item-btn">
+
+
+                                    <span class="btn__inn">
+                                        <i class="btn__icon">
+                                            <i class="icon btn-before__icon icon--buy"></i>
+                                        </i>
+                                        <span class="btn__text products-item-btn__text">купить</span>
+                                    </span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="products-content__item products-item">
+                        <div class="products-item__inner">
+
+                            <div class="products-item__left">
+                                <div class="products-item__name">
+                                    Call of duty
+                                </div>
+
+
+                                <div class="products-item__count">
+
+                                    <div class="products-item__how">
+                                        на складе:
+                                    </div>
+                                    <div class="products-item__value">
+                                        12
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="products-item__right">
+
+
+
+                            <div class="products-item__price">
+
+                                <div class="products-item__nubmer">
+                                    1024
+                                </div>
+
+                                <div class="products-item__currency">
+                                    rub
+                                </div>
+
+                            </div>
+
+                            <div class="products-item__buy">
+                                <a id="authIn" class="btn btn-before products-item-btn">
+
+
+                                    <span class="btn__inn">
+                                        <i class="btn__icon">
+                                            <i class="icon btn-before__icon icon--buy"></i>
+                                        </i>
+                                        <span class="btn__text products-item-btn__text">купить</span>
+                                    </span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="products-content__item products-item">
+                        <div class="products-item__inner">
+
+                            <div class="products-item__left">
+                                <div class="products-item__name">
+                                    Call of duty
+                                </div>
+
+
+                                <div class="products-item__count">
+
+                                    <div class="products-item__how">
+                                        на складе:
+                                    </div>
+                                    <div class="products-item__value">
+                                        12
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="products-item__right">
+
+
+
+                            <div class="products-item__price">
+
+                                <div class="products-item__nubmer">
+                                    1024
+                                </div>
+
+                                <div class="products-item__currency">
+                                    rub
+                                </div>
+
+                            </div>
+
+                            <div class="products-item__buy">
+                                <a id="authIn" class="btn btn-before products-item-btn">
+
+
+                                    <span class="btn__inn">
+                                        <i class="btn__icon">
+                                            <i class="icon btn-before__icon icon--buy"></i>
+                                        </i>
+                                        <span class="btn__text products-item-btn__text">купить</span>
+                                    </span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="products-content__item products-item">
+                        <div class="products-item__inner">
+
+                            <div class="products-item__left">
+                                <div class="products-item__name">
+                                    Call of duty
+                                </div>
+
+
+                                <div class="products-item__count">
+
+                                    <div class="products-item__how">
+                                        на складе:
+                                    </div>
+                                    <div class="products-item__value">
+                                        12
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="products-item__right">
+
+
+
+                            <div class="products-item__price">
+
+                                <div class="products-item__nubmer">
+                                    1024
+                                </div>
+
+                                <div class="products-item__currency">
+                                    rub
+                                </div>
+
+                            </div>
+
+                            <div class="products-item__buy">
+                                <a id="authIn" class="btn btn-before products-item-btn">
+
+
+                                    <span class="btn__inn">
+                                        <i class="btn__icon">
+                                            <i class="icon btn-before__icon icon--buy"></i>
+                                        </i>
+                                        <span class="btn__text products-item-btn__text">купить</span>
+                                    </span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="products-content__item products-item">
+                        <div class="products-item__inner">
+
+                            <div class="products-item__left">
+                                <div class="products-item__name">
+                                    Call of duty
+                                </div>
+
+
+                                <div class="products-item__count">
+
+                                    <div class="products-item__how">
+                                        на складе:
+                                    </div>
+                                    <div class="products-item__value">
+                                        12
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="products-item__right">
+
+
+
+                            <div class="products-item__price">
+
+                                <div class="products-item__nubmer">
+                                    1024
+                                </div>
+
+                                <div class="products-item__currency">
+                                    rub
+                                </div>
+
+                            </div>
+
+                            <div class="products-item__buy">
+                                <a id="authIn" class="btn btn-before products-item-btn">
+
+
+                                    <span class="btn__inn">
+                                        <i class="btn__icon">
+                                            <i class="icon btn-before__icon icon--buy"></i>
+                                        </i>
+                                        <span class="btn__text products-item-btn__text">купить</span>
+                                    </span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="products-content__item products-item">
+                        <div class="products-item__inner">
+
+                            <div class="products-item__left">
+                                <div class="products-item__name">
+                                    Call of duty
+                                </div>
+
+
+                                <div class="products-item__count">
+
+                                    <div class="products-item__how">
+                                        на складе:
+                                    </div>
+                                    <div class="products-item__value">
+                                        12
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="products-item__right">
+
+
+
+                            <div class="products-item__price">
+
+                                <div class="products-item__nubmer">
+                                    1024
+                                </div>
+
+                                <div class="products-item__currency">
+                                    rub
+                                </div>
+
+                            </div>
+
+                            <div class="products-item__buy">
+                                <a id="authIn" class="btn btn-before products-item-btn">
+
+
+                                    <span class="btn__inn">
+                                        <i class="btn__icon">
+                                            <i class="icon btn-before__icon icon--buy"></i>
+                                        </i>
+                                        <span class="btn__text products-item-btn__text">купить</span>
+                                    </span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </main>
+        <footer class="footer">
+
+    <div class="footer__transition"></div>
+    <div class="footer__container container">
+
+        <div class="footer__wrap">
+            <div class="footer__left">
+                <div class="footer__dog"></div>
+                <a href="" class="footer__logo logo">
+                    <img src="img/logo.png" alt="" class="logo__image">
+                </a>
+                <div class="footer__platform footer-platform">
+
+                    <span class="footer-platform__link">
+                           Fiasko-shop.ru
+                        </span>
+                    <span class="footer-platform__text">
+                            - Каталог магазинов с товаром
+                        </span>
+                </div>
+
+                <div class="footer__copyright">
+                    © «Fiasko-shop.ru»
+                </div>
+            </div>
+            <div class="footer__right">
+
+
+                <nav data-da="footer__left,2,768" class="footer__nav  nav footer-nav">
+                    <ul class="footer-nav__list">
+                        <li class="footer-nav__item">
+                            <a href="" class="footer-nav__link">Каталог</a>
+                        </li>
+                        <li class="footer-nav__item">
+                            <a href="feedbacks.html" class="footer-nav__link">Отзывы</a>
+                        </li>
+                        <li class="footer-nav__item">
+                            <a href="" class="footer-nav__link">Поддержка</a>
+                        </li>
+                        <li class="footer-nav__item">
+                            <a href="guarantees.html" class="footer-nav__link">Гарантии</a>
+                        </li>
+                        <li class="footer-nav__item">
+                            <a href="" class="footer-nav__link">Политика</a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+</footer>
+    </div>
+
+
+    <script src="js/script.min.js"></script>
+
+</body>
+
+
+</html>
